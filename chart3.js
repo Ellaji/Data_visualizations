@@ -3,15 +3,15 @@
 
 //FIRST, we initialize as much as we can when the page loads and before the data is available. 
 //It’s good to set the chart size when the page loads, so that the page does not reflow after the data downloads. 
-var width = 420,
-  barHeight = 20;
+var width3 = 420,
+  barHeight3 = 20;
 
-var x = d3.scale.linear()
-  .range([0, width]);
+var x3 = d3.scale.linear()
+  .range([0, width3]);
   //we bind the domain below, in the callback function, because we use data from the tsv data file to generate it
 
 var svgChart2 = d3.select(".bar-chart-svg-tsv")
-  .attr("width", width);
+  .attr("width", width3);
   //we bind the height below, in the callback function, because we use data from the tsv data file to generate it
 
 //SECOND, we complete the remainder of the chart (everything data related) inside a callback function
@@ -19,24 +19,23 @@ var svgChart2 = d3.select(".bar-chart-svg-tsv")
 d3.tsv("data_bar-chart-svg.tsv", type, function(error, data) {
   
   //bind the x domain here
-  x.domain([0, d3.max(data, function(d) { return d.value; })]);
+  x3.domain([0, d3.max(data, function(d) { return d.value; })]);
 
   //bind the height of the chart here
-  svgChart2.attr("height", barHeight * data.length);
-  console.log("working up to here 1");
+  svgChart2.attr("height", barHeight3 * data.length);
 
   var svgBar = svgChart2.selectAll("g")
     .data(data)
     .enter().append("g")
-    .attr("transform", function(d, i) { return "translate(0," + i * barHeight + ")"; });
+    .attr("transform", function(d, i) { return "translate(0," + i * barHeight3 + ")"; });
 
   svgBar.append("rect")
     .attr("width", function(d) { return x(d.value); })
-    .attr("height", barHeight - 1);
+    .attr("height", barHeight3 - 1);
 
   svgBar.append("text")
     .attr("x", function(d) { return x(d.value) -3; })
-    .attr("y", barHeight / 2)
+    .attr("y", barHeight3 / 2)
     .attr("dy", ".35em")
     .text(function(d) { return d.value; });
 });

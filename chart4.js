@@ -1,0 +1,58 @@
+/*  Rotating a bar chart into a column chart largely involves swapping x with y. 
+    However, a number of smaller incidental changes are also required. 
+    This is the cost of working directly with SVG rather than using a high-level visualization grammar like ggplot2. 
+    On the other hand, SVG offers greater customizability; and SVG is a web standard, 
+    so we can use the browser’s developer tools like the element inspector, and use SVG for things beyond visualization.
+    
+    When renaming the x scale to the y scale, the range becomes [height, 0] rather than [0, width]. 
+    This is because the origin of SVG’s coordinate system is in the top-left corner. 
+    We want the zero-value to be positioned at the bottom of the chart, rather than the top. 
+    Likewise this means that we need to position the bar rects by setting the "y" and "height" attributes, 
+    whereas before we only needed to set "width". 
+    (The default value of the "x" attribute is zero, and the old bars were left-aligned.)
+*/
+
+var chart4 = d3.select(".chart4"),
+    margin4 = {top: 20, right: 20, bottom: 30, left: 40},
+    width4 = +chart4.attr("width") - margin4.left - margin4.right,
+    height4 = +chart4.attr("height") - margin4.top - margin4.bottom;
+
+var x4 = d3.scaleBand().rangeRound([0, width4]).paddingInner(0.1),
+    y4 = d3.scaleLinear().rangeRound([height4, 0]);
+
+var g4 = chart4.append("g")
+    .attr("transform", "translate(" + margin4.left + "," + margin4.top + ")");
+
+d3.tsv("data_chart4.tsv", function(d) {
+  d.frequency = +d.frequency;
+  return d;
+}, function(error, data) {
+  if (error) throw error;
+
+  x4.domain(data.map(function(d) { return d.letter; }));
+  y4.domain([0, d3.max(data, function(d) { return d.frequency; })]);
+
+  g4.append("g")
+      .attr("class", "axis axis--x")
+      .attr("transform", "translate(0," + height4 + ")")
+      .call(d3.axisBottom(x));
+
+  g4.append("g")
+      .attr("class", "axis axis--y")
+      .call(d3.axisLeft(y).ticks(10, "%"))
+    .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", "0.71em")
+      .attr("text-anchor", "end")
+      .text("Frequency");
+
+  g4.selectAll(".bar")
+    .data(data)
+    .enter().append("rect")
+      .attr("class", "bar")
+      .attr("x", function(d) { return x(d.letter); })
+      .attr("y", function(d) { return y(d.frequency); })
+      .attr("width", x.bandwidth())
+      .attr("height", function(d) { return height4 - y(d.frequency); });
+});
