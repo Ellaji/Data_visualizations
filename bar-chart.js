@@ -1,52 +1,40 @@
-//HTML bar chart Build the bars with numbers in it 
-var dataSet1 = [4, 8, 15, 16, 23, 42];
+var data = [4, 8, 15, 16, 23, 42];
 
-//Both used in the HTML chart as well as in the SVG chart
+//Map domain to range (in this case times 10)
 var width = 420,
     barHeight = 20;
 
-//Only for the HTML chart
 var x = d3.scale.linear()
-  .domain([0, d3.max(dataSet1)])
+  .domain([0, d3.max(data)])
   .range([0, width]);
 
+//HTML bar chart Build the bars with numbers in it
 d3.select(".bar-chart-html")
   .selectAll("div")
-  .data(dataSet1)
+  .data(data)
   .enter().append("div")
   .style("width", function(d) { return x(d) + "px"; })
   .text(function(d) { return d; });
 
 //SVG bar chart Build the bars with numbers in it
-//Use a tsv (Tabs Separated Values) file as data source; as downloads are asynchronous, we will stick to a certain format, see below for explanation
-d3.tsv("data_bar-chart-svg.tsv", type, function(error, data) {
-  x.domain([0, d3.max(data, function(d) { return d.value; })]);
+var svgChart = d3.select(".bar-chart-svg")
+  .attr("width", width)
+  .attr("height", barHeight * data.length);
 
-  var x = d3.scale.linear()
-  .domain([0, d3.max(data)])
-  .range([0, width]);
+var svgBar = svgChart.selectAll("g")
+  .data(data)
+  .enter().append("g")
+  .attr("transform", function(d, i) { return "translate(0," + i * barHeight + ")"; });
 
+svgBar.append("rect")
+  .attr("width", x)
+  .attr("height", barHeight - 1);
 
-  var svgChart = d3.select(".bar-chart-svg")
-    .attr("width", width)
-    .attr("height", barHeight * data.length);
-
-  var svgBar = svgChart.selectAll("g")
-    .data(data)
-    .enter().append("g")
-    .attr("transform", function(d, i) { return "translate(0," + i * barHeight + ")"; });
-
-  svgBar.append("rect")
-    .attr("width", x)
-    .attr("height", barHeight - 1);
-
-  svgBar.append("text")
-    .attr("x", function(d) { return x(d) - 3; })
-    .attr("y", barHeight / 2)
-    .attr("dy", ".35em")
-    .text(function(d) { return d; });
-
-});
+svgBar.append("text")
+  .attr("x", function(d) { return x(d) - 3; })
+  .attr("y", barHeight / 2)
+  .attr("dy", ".35em")
+  .text(function(d) { return d; });
 
 /* Loading data introduces a new complexity: downloads are asynchronous. 
 When you call d3.tsv, it returns immediately while the file downloads in the background. 
