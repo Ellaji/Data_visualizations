@@ -35,11 +35,11 @@ d3.tsv("data_chart4.tsv", function(d) {
   g4.append("g")
       .attr("class", "axis axis--x")
       .attr("transform", "translate(0," + height4 + ")")
-      .call(d3.axisBottom(x));
+      .call(d3.axisBottom(x4));
 
   g4.append("g")
       .attr("class", "axis axis--y")
-      .call(d3.axisLeft(y).ticks(10, "%"))
+      .call(d3.axisLeft(y4).ticks(10, "%"))
     .append("text")
       .attr("transform", "rotate(-90)")
       .attr("y", 6)
@@ -53,6 +53,6 @@ d3.tsv("data_chart4.tsv", function(d) {
       .attr("class", "bar")
       .attr("x", function(d) { return x(d.letter); })
       .attr("y", function(d) { return y(d.frequency); })
-      .attr("width", x.bandwidth())
+      .attr("width", x4.bandwidth())
       .attr("height", function(d) { return height4 - y(d.frequency); });
 });
