@@ -23,7 +23,16 @@ var x4 = d3.scaleBand().rangeRound([0, width4]).paddingInner(0.1),
     y4 = d3.scaleLinear().rangeRound([height4, 0]);
 
 var g4 = chart4.append("g")
+    .attr("class", "padding-chart4")
     .attr("transform", "translate(" + margin4.left + "," + margin4.top + ")");
+
+ 
+// Setup the tool tip.  Note that this is just one example, and that many styling options are available.
+var tool_tip = d3.tip()
+    .attr("class", "d3-tip")
+    .offset([-8, 0])
+    .html(function(d) { return "Frequency: " + (d.frequency) * 100 + "%"});
+chart4.call(tool_tip);
 
 d3.tsv("data_chart4.tsv", function(d) {
     d.frequency = +d.frequency;
@@ -56,5 +65,15 @@ d3.tsv("data_chart4.tsv", function(d) {
             .attr("x", function(d) { return x4(d.letter); })
             .attr("y", function(d) { return y4(d.frequency); })
             .attr("width", x4.bandwidth())
-            .attr("height", function(d) { return height4 - y4(d.frequency); });
+            .attr("height", function(d) { return height4 - y4(d.frequency); })
+            .style('fill',  function(d) {
+                if(d.frequency > .09000 ){
+                    return 'red';
+                } else {
+                    return 'steelblue';
+                }
+            })
+            .on('mouseover', tool_tip.show)
+            .on('mouseout', tool_tip.hide);
 });
+
