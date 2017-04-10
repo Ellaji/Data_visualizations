@@ -1,0 +1,25 @@
+h2 {
+  padding-top: 50px;
+}
+
+.bar-chart-html div {
+  font: 10px sans-serif;
+  background-color: steelblue;
+  text-align: right;
+  padding: 3px;
+  margin: 1px;
+  color: white;
+}
+
+.bar-chart-svg rect {
+  fill: steelblue;
+}
+
+.bar-chart-svg text {
+  font: 10px sans-serif;
+  fill: white;
+  text-anchor: end;
+}
+
+
+

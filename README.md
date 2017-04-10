@@ -1,0 +1,3 @@
+- Browse to the root folder of this site (d3-examples)
+    - run git bash from inside this folder
+    - run httpster in git bash# Data_visualizations
