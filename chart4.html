@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html lang="nl">
+
+<head>
+
+    <base href="/">   
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width , initial-scale=1" />
+    <link href="bar-chart.css" rel="stylesheet" />
+    <title>D3.js Bar Chart</title>
+    <meta name="description" content="">
+
+</head>
+
+<body>
+
+    <h2>Another Chart drawn from a .tsv file using HTML SVG</h2>
+    <h3>Relative frequency of letters in the English language</h3>
+    <svg class="chart4" width="960" height="500"></svg>
+    
+    <!-- currently the latest version of d3.js is version 4 -->
+    <script src="http://d3js.org/d3.v4.min.js"  charset="utf-8"></script>
+    <!-- scripts d3 for dsv - generation (to parse .tsv or .csv files) -->
+    <script src="https://d3js.org/d3-dsv.v1.min.js"></script>
+    <!-- scripts d3 for formats - fixing problems with binary floating points and other handy stuff for charts -->
+    <script src="https://d3js.org/d3-format.v1.min.js"></script>
+    <!-- scripts d3 for array -->
+    <script src="https://d3js.org/d3-array.v1.min.js"></script>
+    <!-- scripts d3 for scale generation -->
+    <script src="https://d3js.org/d3-collection.v1.min.js"></script>
+    <script src="https://d3js.org/d3-color.v1.min.js"></script>
+    <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
+    <script src="https://d3js.org/d3-time.v1.min.js"></script>
+    <script src="https://d3js.org/d3-time-format.v2.min.js"></script>
+    <script src="https://d3js.org/d3-scale.v1.min.js"></script>
+    <!-- scripts d3 for axis generation -->
+    <script src="https://d3js.org/d3-axis.v1.min.js"></script>
+
+    <script src="chart4.js"></script><!-- after loading d3! -->
+
+</body>
+
+</html>

@@ -21,34 +21,22 @@ h2 {
   text-anchor: end;
 }
 
-.chart4 rect {
-  fill: steelblue;
-}
-
-.chart4 text {
-  fill: white;
-  font: 10px sans-serif;
-  text-anchor: middle;
-}
-
-.axis text {
-  font: 10px sans-serif;
-}
-
-.axis path,
-.axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
-}
-
-.x.axis path {
-  display: none;
-}
-
 .chart4 .bar {
   fill: steelblue;
 }
+
+.chart4 .bar:hover {
+  fill: brown;
+}
+
+.chart4 .axis--x path {
+  display: none;
+}
+
+.chart4 text {
+  font-size: 14px;
+}
+
 
 
 
