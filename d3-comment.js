@@ -212,45 +212,11 @@ d3.comment = function() {
         .style('pointer-events', 'none')
         .style('box-sizing', 'border-box')
       //now we are making the arrow
-      .append("svg")
+      .append("img")
         .attr('class', "d3-comment__arrow ne")
         .style('width', 50)
-        .style('height', 25)
-        .attr('viewBox', "0 0 1500 750")
-      .append("path")
-        .attr('d', "M 0 25 L 500 25 L 1000 500")
-        .attr('fill', "none")
-        .attr('stroke', "black")
-        .attr('stroke-width', "50")
-      .append("g")
-        .attr('transform', "translate(1000,500)")
-      .append("g")
-        .attr('transform', "rotate(45)")
-      .append("g")
-        .attr('transform', "scale(100)")
-      .append("g")
-        .attr('transform', "translate(0,-1.5)")
-        .attr('id', "d3-append-anchor");
-
-     var nodeAnchorForNonNestedTags = d3.select('#d3-append-anchor').enter();
-
-     nodeAnchorForNonNestedTags.append("clipPath")
-        .attr('id', "cp1")
-      .append("rect")
-        .attr('x', -0.5)
-        .attr('y', 0)
-        .style('width', 4)
-        .style('height', 3);
-
-    nodeAnchorForNonNestedTags.append("g")
-        .attr('clip-path', "url(#cp1)")
-      .append("g")
-        .attr('transform', "scale(.3)")
-      .append("g")
-        .style('fill', "black")
-        .style('stroke', "none")
-      .append("path")
-        .attr('d', "M 0 0 L 10 5 L 0 10 z");
+        .style('width', 25)
+        .attr('src', "marker02.svg")
 
     return node.node();
   }

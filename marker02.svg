@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="200"
+   height="100"
+   viewBox="0 0 2000 1000"
+   version="1.1"
+   id="svg27"
+   sodipodi:docname="marker01.svg"
+   inkscape:version="0.92.0 r15299">
+  <metadata
+     id="metadata33">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs31" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="3125"
+     inkscape:window-height="1795"
+     id="namedview29"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     units="px"
+     inkscape:zoom="4.9166667"
+     inkscape:cx="126.25237"
+     inkscape:cy="43.721742"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg27" />
+  <desc
+     id="desc2">File which produces the same effect
+      as the marker example file, but without
+      using markers.
+  </desc>
+  <!-- The path draws as before, but without the marker properties -->
+  <path
+     d="M 143.93397,168.93398 H 1143.934 l 500,500"
+     id="path6"
+     inkscape:connector-curvature="0"
+     style="fill:none;stroke:#000000;stroke-width:100" />
+  <!-- The following logic simulates drawing a marker 
+       at final vertex of the path. -->
+  <!-- First off, move the origin of the user coordinate system
+       so that the origin is now aligned with the end point of the path. -->
+  <g
+     transform="translate(1643.934,668.93398)"
+     id="g25">
+    <!-- Rotate the coordinate system 45 degrees because
+         the marker specified orient="auto" and the final segment
+         of the path is going in the direction of 45 degrees. -->
+    <g
+       transform="rotate(45)"
+       id="g23">
+      <!-- Scale the coordinate system to match the coordinate system
+           indicated by the 'markerUnits' attributes, which in this case has
+           a value of 'strokeWidth'. Therefore, scale the coordinate system
+           by the current value of the 'stroke-width' property, which is 100. -->
+      <g
+         transform="scale(100)"
+         id="g21">
+        <!-- Translate the coordinate system by 
+             (-refX*viewBoxToMarkerUnitsScaleX, -refY*viewBoxToMarkerUnitsScaleY)
+             in order that (refX,refY) within the marker will align with the vertex.
+             In this case, we use the default value for preserveAspectRatio
+             ('xMidYMid meet'), which means find a uniform scale factor
+             (i.e., viewBoxToMarkerUnitsScaleX=viewBoxToMarkerUnitsScaleY)
+             such that the viewBox fits entirely within the viewport ('meet') and 
+             is center-aligned ('xMidYMid'). In this case, the uniform scale factor
+             is markerHeight/viewBoxHeight=3/10=.3. Therefore, translate by
+             (-refX*.3,-refY*.3)=(0*.3,-5*.3)=(0,-1.5). -->
+        <g
+           transform="translate(0,-1.5)"
+           id="g19">
+          <!-- There is an implicit clipping path because the user agent style
+               sheet says that the 'overflow' property for markers has the value
+               'hidden'. To achieve this, create a clipping path at the bounds
+               of the viewport. Note that in this case the viewport extends
+               0.5 units to the left and right of the viewBox due to 
+               a uniform scale factor, different ratios for markerWidth/viewBoxWidth
+               and markerHeight/viewBoxHeight, and 'xMidYMid' alignment -->
+          <clipPath
+             id="cp1">
+            <rect
+               x="-0.5"
+               y="0"
+               width="4"
+               height="3"
+               id="rect8" />
+          </clipPath>
+          <g
+             clip-path="url(#cp1)"
+             id="g17">
+            <!-- Scale the coordinate system by the uniform scale factor
+                 markerHeight/viewBoxHeight=3/10=.3 to set the coordinate
+                 system to viewBox units. -->
+            <g
+               transform="scale(0.3)"
+               id="g15">
+              <!-- This 'g' element carries all property values that result from
+                   cascading and inheritance of properties on the original 'marker' element.
+                   In this example, neither fill nor stroke was specified on the 'marker'
+                   element or any ancestors of the 'marker', so the initial values of
+                   "black" and "none" are used, respectively. -->
+              <g
+                 id="g13"
+                 style="fill:#000000;stroke:none">
+                <!-- Expand out the contents of the 'marker' element. -->
+                <path
+                   d="M 0,0 10,5 0,10 Z"
+                   id="path11"
+                   inkscape:connector-curvature="0" />
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
