@@ -29,7 +29,7 @@ h2 {
   font-size: 14px;
 }
 
-/* for chart4 flags */
+/* for chart tips with info data point on hover over bars */
 .d3-tip {
   line-height: 1;
   font-weight: bold;
@@ -57,6 +57,36 @@ h2 {
   margin: -3px 0 0 0;
   top: 100%;
   left: 0;
+}
+
+.d3-comment__arrow {
+  width: 50px;
+  height: 25px;
+}
+/* Four directions for the arrow, nw (north-west) being the one drawn in the svg */
+.d3-comment__arrow.ne {
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  filter: FlipH;
+  -ms-filter: “FlipH”;
+}
+
+.d3-comment__arrow.se {
+  -moz-transform: scale(-1, -1);
+  -o-transform: scale(-1, -1);
+  -webkit-transform: scale(-1, -1);
+  transform: scale(-1, -1);
+}
+
+.d3-comment__arrow.sw {
+  -moz-transform: scaleY(-1);
+  -o-transform: scaleY(-1);
+  -webkit-transform: scaleY(-1);
+  transform: scaleY(-1);
+  filter: FlipV;
+  -ms-filter: “FlipV”;
 }
 
 

@@ -7,11 +7,6 @@
     so we can use the browser’s developer tools like the element inspector, and use SVG for things beyond visualization.
     
     When renaming the x scale to the y scale, the range becomes [height, 0] rather than [0, width]. 
-    This is because the origin of SVG’s coordinate system is in the top-left corner. 
-    We want the zero-value to be positioned at the bottom of the chart, rather than the top. 
-    Likewise this means that we need to position the bar rects by setting the "y" and "height" attributes, 
-    whereas before we only needed to set "width". 
-    (The default value of the "x" attribute is zero, and the old bars were left-aligned.)
 */
 
 var chart4 = d3.select(".chart4"),
@@ -27,21 +22,18 @@ var g4 = chart4.append("g")
     .attr("transform", "translate(" + margin4.left + "," + margin4.top + ")");
 
  
-// Setup the tool tip.
+// Setup the tip
 var tool_tip = d3.tip()
     .attr("class", "d3-tip")
     .offset([-10, 0])
     .html(function(d) { return "Frequency: " + (d.frequency*100).toFixed(3) + "%"; });
 chart4.call(tool_tip); //invoking the tool_tip
 
-// Setup the commentInput. 
-var comment_field = chart4.append("form")
-        .attr("class", "comment-flag")
-    .append("input")
-        .attr("type", "text")
-        .attr("name", "comment")
-        .attr("dy", "0.71em")
-        .attr("text-anchor", "end");
+// Setup the comment 
+var comment_field = d3.comment()
+        .attr("class", "d3-comment")
+        .html(function(d) { return "Comment: " + (d.frequency*100).toFixed(3) + "%"; });
+chart4.call(comment_field); //invoking the comment_field
 
 d3.tsv("data_chart4.tsv", function(d) {
     d.frequency = +d.frequency;
@@ -84,6 +76,9 @@ d3.tsv("data_chart4.tsv", function(d) {
             })
             .on('mouseover', tool_tip.show)
             .on('mouseout', tool_tip.hide)
-            .on('click', function(d) { console.log(d.frequency); });
+            .on('click', function(d) { 
+                comment_field.show; 
+                console.log(d.frequency);
+            });
 });
 

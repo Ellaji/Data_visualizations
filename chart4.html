@@ -16,8 +16,11 @@
 <body>
 
     <h2>Another Chart drawn from a .tsv file using HTML SVG</h2>
-    <svg class="comment__arrow" width="100px" height="50px" viewBox="0 0 1500 750">
+    <!-- for the svg marker see https://www.w3.org/TR/svg-markers/images/marker-simulated.svg -->
+    <svg class="d3-comment__arrow ne" width="50px" height="25px" viewBox="0 0 1500 750">
+        <!--the ne (north-east) in the class can be replaced by nw, sw, se with JavaScript-->
         <!--the viewbox redefines what the coordinates without units mean inside an <svg> element-->
+        <!--now we can scale the whole image by resetting the with width and height -->
         <path d="M 0 25 L 500 25 L 1000 500" fill="none" stroke="black" stroke-width="50"/>
         <!--think about that the stroke widht is also included in the second argument of M and L-->
         <g transform="translate(1000,500)">
