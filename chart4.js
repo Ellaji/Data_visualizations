@@ -27,12 +27,21 @@ var g4 = chart4.append("g")
     .attr("transform", "translate(" + margin4.left + "," + margin4.top + ")");
 
  
-// Setup the tool tip.  Note that this is just one example, and that many styling options are available.
+// Setup the tool tip.
 var tool_tip = d3.tip()
     .attr("class", "d3-tip")
-    .offset([-8, 0])
-    .html(function(d) { return "Frequency: " + (d.frequency) * 100 + "%"});
-chart4.call(tool_tip);
+    .offset([-10, 0])
+    .html(function(d) { return "Frequency: " + (d.frequency*100).toFixed(3) + "%"; });
+chart4.call(tool_tip); //invoking the tool_tip
+
+// Setup the commentInput. 
+var comment_field = chart4.append("form")
+        .attr("class", "comment-flag")
+    .append("input")
+        .attr("type", "text")
+        .attr("name", "comment")
+        .attr("dy", "0.71em")
+        .attr("text-anchor", "end");
 
 d3.tsv("data_chart4.tsv", function(d) {
     d.frequency = +d.frequency;
@@ -74,6 +83,7 @@ d3.tsv("data_chart4.tsv", function(d) {
                 }
             })
             .on('mouseover', tool_tip.show)
-            .on('mouseout', tool_tip.hide);
+            .on('mouseout', tool_tip.hide)
+            .on('click', function(d) { console.log(d.frequency); });
 });
 

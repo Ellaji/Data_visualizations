@@ -52,7 +52,7 @@ h2 {
   text-align: center;
 }
 
-/* Style northward tooltips differently */
+/* Style the northward tooltip */
 .d3-tip.n:after {
   margin: -3px 0 0 0;
   top: 100%;

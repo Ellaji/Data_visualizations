@@ -16,6 +16,29 @@
 <body>
 
     <h2>Another Chart drawn from a .tsv file using HTML SVG</h2>
+    <svg class="comment__arrow" width="100px" height="50px" viewBox="0 0 1500 750">
+        <!--the viewbox redefines what the coordinates without units mean inside an <svg> element-->
+        <path d="M 0 25 L 500 25 L 1000 500" fill="none" stroke="black" stroke-width="50"/>
+        <!--think about that the stroke widht is also included in the second argument of M and L-->
+        <g transform="translate(1000,500)">
+            <g transform="rotate(45)">
+                <g transform="scale(100)">
+                    <g transform="translate(0,-1.5)">
+                        <clipPath id="cp1">
+                            <rect x="-0.5" y="0" width="4" height="3"/>
+                        </clipPath>
+                        <g clip-path="url(#cp1)">
+                            <g transform="scale(.3)">
+                                <g fill="black" stroke="none">
+                                    <path d="M 0 0 L 10 5 L 0 10 z"/>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </svg>
     <h3>Relative frequency of letters in the English language</h3>
     <svg class="chart4" width="960" height="500"></svg>
     
@@ -38,6 +61,7 @@
     <script src="https://d3js.org/d3-axis.v1.min.js"></script>
 
     <script src="d3-tip.js"></script>
+    <script src="d3-comment.js"></script>
     <script src="chart4.js"></script><!-- after loading d3! -->
 
 </body>
